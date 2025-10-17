@@ -1,5 +1,7 @@
 import random
-import string
+
+dice = [["A","A","E","E","G","N"],["E","L","R","T","T","Y"],["A","O","O","T","T","W"],["A","B","B","J","O","O"],["E","H","R","T","V","W"],["C","I","M","O","T","U"],["D","I","S","T","T","Y"],["E","I","O","S","S","T"],["D","E","L","R","V","Y"],["A","C","H","O","P","S"],["H","I","M","N","Qu","U"],["E","E","I","N","S","U"], ["E","E","G","H","N","W"],["A","F","F","K","P","S"],["H","L","N","N","R","Z"],["D","E","I","L","R","X"]]
+
 
 class BoggleBoard:
   
@@ -7,30 +9,16 @@ class BoggleBoard:
     self.board:list = [['_','_','_','_'],['_','_','_','_'],['_','_','_','_'],['_','_','_','_']]
   
   def __str__(self):
-    return f"{"".join(self.board[0])}\n{"".join(self.board[1])}\n{"".join(self.board[2])}\n{"".join(self.board[3])}"
+    return "\n".join("  ".join(letter.ljust(2) for letter in row) for row in self.board)
   
   def shake(self):
+    dice_idx = 0
     for i in range(len(self.board)):
       for j in range(len(self.board[i])):
-        letter = random.choice(string.ascii_uppercase)
+        letter = random.choice(dice[dice_idx])
         self.board[i][j] = letter
-      print("".join(self.board[i]))
-    # for i in range(len(self.board)):
-    #   print("".join(self.board[i]))
-    return ""
+        dice_idx += 1
 
 board_setter = BoggleBoard()
+board_setter.shake()
 print(board_setter)
-print(board_setter.shake())
-# for i in range(len(board_setter)):
-#   letter = random.choice(string.ascii_uppercase)
-#   print(letter)
-#   board_setter[i] = letter
-# print(board_setter)
-
-# row_1 = "".join(board_setter[0:4])
-# row_2 = "".join(board_setter[4:8])
-# row_3 = "".join(board_setter[8:12])
-# row_4= "".join(board_setter[12:])
-# new_board = f"{row_1}\n{row_2}\n{row_3}\n{row_4}"
-# print(new_board)
